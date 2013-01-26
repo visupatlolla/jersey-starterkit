@@ -9,7 +9,6 @@ repositories {
 dependencies {
 	compile "javax.ws.rs:jsr311-api:1.1.1"
 
-
 	compile 'com.sun.jersey:jersey-server:1.16'
 	compile 'com.sun.jersey:jersey-core:1.16'
 	compile 'com.sun.jersey:jersey-client:1.16'
@@ -26,6 +25,13 @@ dependencies {
 	testCompile "junit:junit-dep:4.10"
 }
 
+task hello << {
+    println('hello world')
+}
+
 task wrapper(type: Wrapper) {
     gradleVersion = '1.3'
 }
+
+ant.importBuild 'ant-builds/enunciate/targets.xml'
+ant.properties['enunciate.dependencies']=configurations.runtime.asPath
